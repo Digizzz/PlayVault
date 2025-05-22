@@ -10,11 +10,12 @@ namespace PlayVault.Models
         [StringLength(100, MinimumLength = 3)]
         public string Image {  get; set; }
 
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9\s.,]*$")]
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public string? Title { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9\s.,;()]*$")]
         [StringLength(500, MinimumLength = 5)]
         [Required]
         public string Description { get; set; }
@@ -29,7 +30,7 @@ namespace PlayVault.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9\s.,;()]*$")]
         [Required]
         [StringLength(30)]
         public string? Genre { get; set; }
@@ -38,7 +39,7 @@ namespace PlayVault.Models
         [Required]
         public int Rating { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9\s.,;()]*$")]
         [StringLength(500, MinimumLength = 5)]
         [Required]
         public string recensioneTxt { get; set; }
