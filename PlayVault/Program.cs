@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using PlayVault.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<PlayVaultContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PlayVaultContext") ?? throw new InvalidOperationException("Connection string 'PlayVaultContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
