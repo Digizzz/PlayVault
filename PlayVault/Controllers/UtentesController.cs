@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PlayVault.Data;
+using PlayVault.Models;
 
-namespace PlayVault.Models
+namespace PlayVault.Controllers
 {
     public class UtentesController : Controller
     {
