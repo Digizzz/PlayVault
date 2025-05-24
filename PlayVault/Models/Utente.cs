@@ -17,6 +17,12 @@ namespace PlayVault.Models
         [Required]
         [StringLength(60)]
         public string? Game { get; set; }
+        
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
+        public string Piattaforma { get; set; }
+
 
         [Range(1, 150)]
         [DataType(DataType.Currency)]
@@ -28,12 +34,6 @@ namespace PlayVault.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
-
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
-        [StringLength(60, MinimumLength = 3)]
-        [Required]
-        public string Piattaforma { get; set; }
-
 
     }
 
