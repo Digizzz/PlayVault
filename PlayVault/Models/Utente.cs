@@ -30,7 +30,7 @@ namespace PlayVault.Models
         [Required]
         public decimal Positioning { get; set; }
 
-        [Display(Name = "Release Date")]
+        [Display(Name = "Achievement Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
