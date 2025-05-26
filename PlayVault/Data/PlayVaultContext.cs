@@ -15,5 +15,6 @@ namespace PlayVault.Data
         }
 
         public DbSet<PlayVault.Models.Game> Game { get; set; } = default!;
+        public DbSet<PlayVault.Models.Utente> Utente { get; set; } = default!;
     }
 }
