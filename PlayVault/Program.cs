@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PlayVaultContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PlayVaultContext") ?? throw new InvalidOperationException("Connection string 'PlayVaultContext' not found.")));
 
+builder.Services.AddAntiforgery();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -23,6 +25,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAntiforgery();
 
 app.UseRouting();
 
