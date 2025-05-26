@@ -2,13 +2,18 @@
 using Microsoft.Extensions.DependencyInjection;
 using PlayVault.Data;
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<PlayVaultContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PlayVaultContext") ?? throw new InvalidOperationException("Connection string 'PlayVaultContext' not found.")));
+
+builder.Services.AddAntiforgery();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -20,6 +25,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAntiforgery();
 
 app.UseRouting();
 
