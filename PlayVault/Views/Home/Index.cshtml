@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Game Store";
+    ViewData["Title"] = "Play Vault";
 }
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
             animation: twinkle 3s infinite ease-in-out;
         }
 
-        @@keyframes twinkle {
+        @keyframes twinkle {
             0%, 100% {
                 opacity: 0.3;
                 transform: scale(1);
@@ -83,7 +83,7 @@
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
         }
 
-        @@keyframes gradientShift {
+        @keyframes gradientShift {
             0%, 100% {
                 background-position: 0% 50%;
             }
@@ -157,6 +157,10 @@
             background: linear-gradient(135deg, #4d9de0, #15548d);
         }
 
+        .office-card .card-image {
+            background: linear-gradient(135deg, #6bcf7f, #2d8a47);
+        }
+
         .card-icon {
             position: absolute;
             top: 50%;
@@ -166,7 +170,7 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        @@keyframes float {
+        @keyframes float {
             0%, 100% {
                 transform: translate(-50%, -50%) translateY(0px);
             }
@@ -240,6 +244,10 @@
             background: linear-gradient(45deg, #4d9de0, #15548d);
         }
 
+        .btn-office {
+            background: linear-gradient(45deg, #6bcf7f, #2d8a47);
+        }
+
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -276,7 +284,7 @@
             margin-top: 0.5rem;
         }
 
-        @@keyframes fadeInDown {
+        @keyframes fadeInDown {
             from {
                 opacity: 0;
                 transform: translateY(-30px);
@@ -288,7 +296,7 @@
             }
         }
 
-        @@keyframes fadeInUp {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -300,7 +308,7 @@
             }
         }
 
-        @@media (max-width: 768px) {
+        @media (max-width: 768px) {
             .title {
                 font-size: 2.5rem;
             }
@@ -324,7 +332,7 @@
             animation: particleFloat 6s linear infinite;
         }
 
-        @@keyframes particleFloat {
+        @keyframes particleFloat {
             0% {
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
@@ -374,6 +382,17 @@
                     <h2 class="card-title">Gestione Utenti</h2>
                     <p class="card-description">Monitora e gestisci la tua community di giocatori con strumenti avanzati di amministrazione.</p>
                     <button class="btn btn-users">Gestisci Utenti</button>
+                </div>
+            </div>
+
+            <div class="card office-card" onclick="navigateToOffice()">
+                <div class="card-image">
+                    <div class="card-icon">🏢</div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Ufficio Aziendale</h2>
+                    <p class="card-description">Accedi al pannello di controllo amministrativo e alle funzionalità di gestione aziendale.</p>
+                    <button class="btn btn-office">Visita Ufficio</button>
                 </div>
             </div>
         </div>
@@ -452,6 +471,11 @@
         function navigateToUsers() {
             // In una vera applicazione, questo andrebbe alla pagina degli utenti
             alert('👥 Navigando alla gestione utenti...');
+        }
+
+        function navigateToOffice() {
+            // In una vera applicazione, questo andrebbe alla sezione ufficio
+            alert('🏢 Navigando all\'ufficio aziendale...');
         }
 
         // Initialize animations
