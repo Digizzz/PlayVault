@@ -14,10 +14,6 @@ namespace PlayVault.Data
         {
         }
 
-        public PlayVaultContext(DbContextOptions options) : base(options)
-        {
-        }
-
         public DbSet<PlayVault.Models.Game> Game { get; set; } = default!;
         public DbSet<PlayVault.Models.Utente> Utente { get; set; } = default!;
     }
