@@ -1,5 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Play Vault";
+﻿    ViewData["Title"] = "Play Vault";
 }
 
 <!DOCTYPE html>
@@ -7,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 Game Store</title>
+    <title>🎮 Play Vault</title>
     <style>
         * {
             margin: 0;
@@ -40,19 +39,16 @@
             animation: twinkle 3s infinite ease-in-out;
         }
 
-        twinkle {
-            0%, 100%
+         twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
 
-        {
-            opacity: 0.3;
-            transform: scale(1);
-        }
-
-        50% {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         .container {
@@ -87,16 +83,13 @@
         }
 
         gradientShift {
-            0%, 100%
+            0%, 100% {
+                background-position: 0% 50%;
+            }
 
-        {
-            background-position: 0% 50%;
-        }
-
-        50% {
-            background-position: 100% 50%;
-        }
-
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .subtitle {
@@ -106,11 +99,22 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        .navigation-section {
+            display: flex;
+            flex-direction: column;
             gap: 3rem;
             animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .main-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .office-card-container {
+            display: flex;
+            justify-content: center;
         }
 
         .card {
@@ -125,27 +129,32 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-            .card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-                transform: translateX(-100%);
-                transition: transform 0.6s;
-            }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
 
-            .card:hover::before {
-                transform: translateX(100%);
-            }
+        .card:hover::before {
+            transform: translateX(100%);
+        }
 
-            .card:hover {
-                transform: translateY(-20px) scale(1.02);
-                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-                border-color: rgba(255, 255, 255, 0.4);
-            }
+        .card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .office-card {
+            max-width: 450px;
+            width: 100%;
+        }
 
         .card-image {
             height: 200px;
@@ -176,17 +185,14 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        float {
-            0%, 100%
+         float {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateY(0px);
+            }
 
-        {
-            transform: translate(-50%, -50%) translateY(0px);
-        }
-
-        50% {
-            transform: translate(-50%, -50%) translateY(-10px);
-        }
-
+            50% {
+                transform: translate(-50%, -50%) translateY(-10px);
+            }
         }
 
         .card-content {
@@ -225,25 +231,25 @@
             overflow: hidden;
         }
 
-            .btn::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-                transition: left 0.5s;
-            }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
 
-            .btn:hover::before {
-                left: 100%;
-            }
+        .btn:hover::before {
+            left: 100%;
+        }
 
-            .btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
 
         .btn-games {
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
@@ -275,10 +281,10 @@
             transition: all 0.3s ease;
         }
 
-            .stat-card:hover {
-                transform: translateY(-5px);
-                background: rgba(255, 255, 255, 0.15);
-            }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
 
         .stat-number {
             font-size: 2.5rem;
@@ -293,52 +299,53 @@
             margin-top: 0.5rem;
         }
 
-        fadeInDown {
-            from
+         fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
 
-        {
-            opacity: 0;
-            transform: translateY(-30px);
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
+         fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+         (max-width: 1024px) {
+            .main-cards {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .office-card {
+                max-width: none;
+            }
         }
 
-        fadeInUp {
-            from
+         (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
 
-        {
-            opacity: 0;
-            transform: translateY(30px);
-        }
+            .container {
+                padding: 1rem;
+            }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        }
-
-        (max-width: 768px) {
-            .title
-
-        {
-            font-size: 2.5rem;
-        }
-
-        .cards-container {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .container {
-            padding: 1rem;
-        }
-
+            .navigation-section {
+                gap: 2rem;
+            }
         }
 
         /* Particle animation */
@@ -351,26 +358,23 @@
         }
 
         particleFloat {
-            0%
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
 
-        {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-        }
+            10% {
+                opacity: 1;
+            }
 
-        10% {
-            opacity: 1;
-        }
+            90% {
+                opacity: 1;
+            }
 
-        90% {
-            opacity: 1;
-        }
-
-        100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-        }
-
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -383,37 +387,41 @@
             <p class="subtitle">Gestisci la tua collezione di videogiochi e i tuoi utenti con stile</p>
         </div>
 
-        <div class="cards-container">
-            <div class="card games-card" onclick="navigateToGames()">
-                <div class="card-image">
-                    <div class="card-icon">🎮</div>
+        <div class="navigation-section">
+            <div class="main-cards">
+                <div class="card games-card" onclick="navigateToGames()">
+                    <div class="card-image">
+                        <div class="card-icon">🎮</div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Gestione Giochi</h2>
+                        <p class="card-description">Scopri, aggiungi e gestisci il tuo catalogo di videogiochi con un'interfaccia moderna e intuitiva.</p>
+                        <button class="btn btn-games">Esplora Giochi</button>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h2 class="card-title">Gestione Giochi</h2>
-                    <p class="card-description">Scopri, aggiungi e gestisci il tuo catalogo di videogiochi con un'interfaccia moderna e intuitiva.</p>
-                    <button class="btn btn-games">Esplora Giochi</button>
+
+                <div class="card users-card" onclick="navigateToUsers()">
+                    <div class="card-image">
+                        <div class="card-icon">👥</div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Gestione Utenti</h2>
+                        <p class="card-description">Monitora e gestisci la tua community di giocatori con strumenti avanzati di amministrazione.</p>
+                        <button class="btn btn-users">Gestisci Utenti</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="card users-card" onclick="navigateToUsers()">
-                <div class="card-image">
-                    <div class="card-icon">👥</div>
-                </div>
-                <div class="card-content">
-                    <h2 class="card-title">Gestione Utenti</h2>
-                    <p class="card-description">Monitora e gestisci la tua community di giocatori con strumenti avanzati di amministrazione.</p>
-                    <button class="btn btn-users">Gestisci Utenti</button>
-                </div>
-            </div>
-
-            <div class="card office-card" onclick="navigateToOffice()">
-                <div class="card-image">
-                    <div class="card-icon">🏢</div>
-                </div>
-                <div class="card-content">
-                    <h2 class="card-title">Ufficio Aziendale</h2>
-                    <p class="card-description">Accedi al pannello di controllo amministrativo e alle funzionalità di gestione aziendale.</p>
-                    <button class="btn btn-office">Visita Ufficio</button>
+            <div class="office-card-container">
+                <div class="card office-card" onclick="navigateToOffice()">
+                    <div class="card-image">
+                        <div class="card-icon">🏢</div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Ufficio Aziendale</h2>
+                        <p class="card-description">Accedi al pannello di controllo amministrativo e alle funzionalità di gestione aziendale.</p>
+                        <button class="btn btn-office">Visita Ufficio</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -483,20 +491,17 @@
             }, 20);
         }
 
-        // Navigation functions
+        // Navigation functions - ora portano alle vere pagine
         function navigateToGames() {
-            // In una vera applicazione, questo andrebbe alla pagina dei giochi
-            alert('🎮 Navigando alla gestione giochi...');
+            window.location.href = '/Games';
         }
 
         function navigateToUsers() {
-            // In una vera applicazione, questo andrebbe alla pagina degli utenti
-            alert('👥 Navigando alla gestione utenti...');
+            window.location.href = '/Users';
         }
 
         function navigateToOffice() {
-            // In una vera applicazione, questo andrebbe alla sezione ufficio
-            alert('🏢 Navigando all\'ufficio aziendale...');
+            window.location.href = '/Office';
         }
 
         // Initialize animations
