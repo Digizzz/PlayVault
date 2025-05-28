@@ -1,59 +1,368 @@
 ﻿@model IEnumerable<PlayVault.Models.Utente>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gestione Utenti - PlayVault";
 }
 
-<h1>Index</h1>
+<div class="container-fluid">
+    <!-- Header Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="display-6 text-primary mb-2">
+                        <i class="fas fa-users me-3"></i>Gestione Utenti
+                    </h1>
+                    <p class="text-muted">Visualizza e gestisci tutti gli utenti registrati su PlayVault</p>
+                </div>
+                <div>
+                    <a asp-action="Create" class="btn btn-primary btn-lg shadow-sm">
+                        <i class="fas fa-user-plus me-2"></i>Aggiungi Nuovo Utente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Game)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Piattaforma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Positioning)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Game)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Piattaforma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Positioning)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-gradient-primary text-white shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title text-white-50">Totale Utenti</h6>
+                            <h3 class="mb-0">@Model.Count()</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-users fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-gradient-success text-white shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title text-white-50">Giochi Unici</h6>
+                            <h3 class="mb-0">@Model.Select(u => u.Game).Distinct().Count()</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-gamepad fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-gradient-info text-white shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title text-white-50">Piattaforme</h6>
+                            <h3 class="mb-0">@Model.Select(u => u.Piattaforma).Distinct().Count()</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-desktop fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-gradient-warning text-white shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title text-white-50">Media Posizione</h6>
+                            <h3 class="mb-0">@(Model.Any() ? Math.Round(Model.Average(u => u.Positioning), 1) : 0)</h3>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-trophy fa-2x opacity-75"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Cerca utente</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                <input type="text" class="form-control" id="searchInput" placeholder="Nome utente...">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Filtra per gioco</label>
+                            <select class="form-select" id="gameFilter">
+                                <option value="">Tutti i giochi</option>
+                                @foreach (var game in Model.Select(u => u.Game).Distinct().OrderBy(g => g))
+                                {
+                                        <option value="@game">@game</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Filtra per piattaforma</label>
+                            <select class="form-select" id="platformFilter">
+                                <option value="">Tutte le piattaforme</option>
+                                @foreach (var platform in Model.Select(u => u.Piattaforma).Distinct().OrderBy(p => p))
+                                {
+                                        <option value="@platform">@platform</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">&nbsp;</label>
+                            <button class="btn btn-outline-secondary w-100" onclick="clearFilters()">
+                                <i class="fas fa-times me-1"></i>Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-list me-2"></i>Elenco Utenti
+                        <span class="badge bg-primary ms-2" id="userCount">@Model.Count()</span>
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    @if (Model.Any())
+                    {
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0" id="usersTable">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col" class="py-3">
+                                                <i class="fas fa-user me-2"></i>
+                                            @Html.DisplayNameFor(model => model.UserName)
+                                            </th>
+                                            <th scope="col" class="py-3">
+                                                <i class="fas fa-gamepad me-2"></i>
+                                            @Html.DisplayNameFor(model => model.Game)
+                                            </th>
+                                            <th scope="col" class="py-3">
+                                                <i class="fas fa-desktop me-2"></i>
+                                            @Html.DisplayNameFor(model => model.Piattaforma)
+                                            </th>
+                                            <th scope="col" class="py-3 text-center">
+                                                <i class="fas fa-trophy me-2"></i>
+                                            @Html.DisplayNameFor(model => model.Positioning)
+                                            </th>
+                                            <th scope="col" class="py-3">
+                                                <i class="fas fa-calendar me-2"></i>
+                                            @Html.DisplayNameFor(model => model.Date)
+                                            </th>
+                                            <th scope="col" class="py-3 text-center">Azioni</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var item in Model.OrderBy(u => u.UserName))
+                                    {
+                                                <tr class="user-row">
+                                                    <td class="py-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-circle me-3">
+                                                        @item.UserName.Substring(0, 1).ToUpper()
+                                                            </div>
+                                                            <strong class="text-primary user-name">@Html.DisplayFor(modelItem => item.UserName)</strong>
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-3">
+                                                        <span class="badge bg-info bg-opacity-10 text-info px-3 py-2 game-name">
+                                                    @Html.DisplayFor(modelItem => item.Game)
+                                                        </span>
+                                                    </td>
+                                                    <td class="py-3">
+                                                        <span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 platform-name">
+                                                    @Html.DisplayFor(modelItem => item.Piattaforma)
+                                                        </span>
+                                                    </td>
+                                                    <td class="py-3 text-center">
+                                                @{
+                                                    var positionClass = item.Positioning <= 3 ? "text-warning" :
+                                                    item.Positioning <= 10 ? "text-info" : "text-muted";
+                                                    var positionIcon = item.Positioning == 1 ? "fas fa-crown" :
+                                                    item.Positioning <= 3 ? "fas fa-medal" :
+                                                    "fas fa-hashtag";
+                                                }
+                                                        <span class="@positionClass fw-bold">
+                                                            <i class="@positionIcon me-1"></i>
+                                                    @Html.DisplayFor(modelItem => item.Positioning)°
+                                                        </span>
+                                                    </td>
+                                                    <td class="py-3">
+                                                        <small class="text-muted">
+                                                            <i class="fas fa-clock me-1"></i>
+                                                    @Html.DisplayFor(modelItem => item.Date)
+                                                        </small>
+                                                    </td>
+                                                    <td class="py-3 text-center">
+                                                        <div class="btn-group" role="group">
+                                                            <a asp-action="Details" asp-route-id="@item.Id"
+                                                               class="btn btn-outline-info btn-sm"
+                                                               data-bs-toggle="tooltip" title="Visualizza dettagli">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                            <a asp-action="Edit" asp-route-id="@item.Id"
+                                                               class="btn btn-outline-warning btn-sm"
+                                                               data-bs-toggle="tooltip" title="Modifica">
+                                                                <i class="fas fa-edit"></i>
+                                                            </a>
+                                                            <a asp-action="Delete" asp-route-id="@item.Id"
+                                                               class="btn btn-outline-danger btn-sm"
+                                                               data-bs-toggle="tooltip" title="Elimina"
+                                                               onclick="return confirm('Sei sicuro di voler eliminare questo utente?')">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                    }
+                    else
+                    {
+                            <div class="text-center py-5">
+                                <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                                <h5 class="text-muted">Nessun utente trovato</h5>
+                                <p class="text-muted">Inizia aggiungendo il tuo primo utente!</p>
+                                <a asp-action="Create" class="btn btn-primary">
+                                    <i class="fas fa-user-plus me-2"></i>Aggiungi Primo Utente
+                                </a>
+                            </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+    .bg-gradient-info {
+        background: linear-gradient(135deg, #667eea 0%, #2196F3 100%);
+    }
+    .bg-gradient-warning {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .avatar-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .card {
+        border: none;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0,123,255,.075);
+    }
+
+    .btn-group .btn {
+        margin: 0 1px;
+    }
+
+    .user-row {
+        transition: all 0.3s ease;
+    }
+
+    .fade-out {
+        opacity: 0.3;
+        transform: scale(0.98);
+    }
+</style>
+
+<script>
+    // Initialize tooltips
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+
+    // Search and filter functionality
+    function filterUsers() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const gameFilter = document.getElementById('gameFilter').value.toLowerCase();
+        const platformFilter = document.getElementById('platformFilter').value.toLowerCase();
+
+        const rows = document.querySelectorAll('.user-row');
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const userName = row.querySelector('.user-name').textContent.toLowerCase();
+            const gameName = row.querySelector('.game-name').textContent.toLowerCase();
+            const platformName = row.querySelector('.platform-name').textContent.toLowerCase();
+
+            const matchesSearch = userName.includes(searchTerm);
+            const matchesGame = !gameFilter || gameName.includes(gameFilter);
+            const matchesPlatform = !platformFilter || platformName.includes(platformFilter);
+
+            if (matchesSearch && matchesGame && matchesPlatform) {
+                row.style.display = '';
+                row.classList.remove('fade-out');
+                visibleCount++;
+            } else {
+                row.classList.add('fade-out');
+                setTimeout(() => {
+                    if (row.classList.contains('fade-out')) {
+                        row.style.display = 'none';
+                    }
+                }, 150);
+            }
+        });
+
+        document.getElementById('userCount').textContent = visibleCount;
+    }
+
+    function clearFilters() {
+        document.getElementById('searchInput').value = '';
+        document.getElementById('gameFilter').value = '';
+        document.getElementById('platformFilter').value = '';
+        filterUsers();
+    }
+
+    // Add event listeners
+    document.getElementById('searchInput').addEventListener('input', filterUsers);
+    document.getElementById('gameFilter').addEventListener('change', filterUsers);
+    document.getElementById('platformFilter').addEventListener('change', filterUsers);
+</script>
