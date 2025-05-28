@@ -36,6 +36,7 @@
             background: white;
             border-radius: 50%;
             opacity: 0.8;
+
             animation: twinkle 3s infinite ease-in-out;
         }
 
@@ -66,7 +67,6 @@
         .header {
             text-align: center;
             margin-bottom: 4rem;
-            animation: fadeInDown 1s ease-out;
         }
 
         .title {
@@ -77,12 +77,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
             margin-bottom: 1rem;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
         }
 
-        gradientShift {
+        @@keyframes gradientShift {
+
             0%, 100% {
                 background-position: 0% 50%;
             }
@@ -103,7 +103,6 @@
             display: flex;
             flex-direction: column;
             gap: 3rem;
-            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .main-cards {
@@ -182,10 +181,10 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 4rem;
-            animation: float 3s ease-in-out infinite;
         }
 
-         float {
+        @@keyframes float {
+
             0%, 100% {
                 transform: translate(-50%, -50%) translateY(0px);
             }
@@ -311,7 +310,8 @@
             }
         }
 
-         fadeInUp {
+
+        fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -323,8 +323,13 @@
             }
         }
 
-         (max-width: 1024px) {
-            .main-cards {
+         (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .cards-container {
+
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
@@ -356,6 +361,7 @@
             pointer-events: none;
             animation: particleFloat 6s linear infinite;
         }
+
 
         particleFloat {
             0% {
