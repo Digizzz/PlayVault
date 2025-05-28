@@ -1,0 +1,50 @@
+﻿@model PlayVault.Models.Utente
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Utente</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Game)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Game)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Piattaforma)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Piattaforma)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Positioning)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Positioning)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <br />
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <br />
+    <a asp-action="Index">Back to List</a>
+</div>
