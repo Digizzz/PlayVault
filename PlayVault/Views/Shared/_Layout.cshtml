@@ -37,7 +37,7 @@
         .navbar-brand {
             font-weight: 700;
             font-size: 1.8rem;
-            color: white !important;
+            color: linear-gradient(45deg, #ff6b6b, #ffd93d) !important;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -52,6 +52,9 @@
 
             .navbar-brand::before {
                 content: "🎮";
+                background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d9de0);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
                 font-size: 1.5rem;
                 animation: bounce 2s infinite;
             }
@@ -320,7 +323,7 @@
     <header>
         <nav class="navbar navbar-expand-lg custom-header" id="mainNavbar">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Games" asp-action="Index">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     PlayVault
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
