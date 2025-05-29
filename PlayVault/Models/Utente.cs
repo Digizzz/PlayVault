@@ -20,7 +20,7 @@ namespace PlayVault.Models
         public string? Game { get; set; }
 
         [Display(Name = "Piattaforma")]
-        [RegularExpression(@"^[A-Z][a-zA-Z\s]*$", ErrorMessage = "Il campo Piattaforma deve iniziare con una lettera maiuscola.")]
+        [RegularExpression(@"^[A-Z][a-zA-Z\s]*$", ErrorMessage = "Il campo Piattaforma deve iniziare con uvna lettera maiuscola.")]
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public string Piattaforma { get; set; }

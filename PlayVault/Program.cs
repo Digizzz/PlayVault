@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlayVault.Data;
+using PlayVault.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<PlayVaultContext>(options =>
@@ -14,6 +15,13 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedDataGames.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

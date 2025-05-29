@@ -33,7 +33,7 @@ namespace PlayVault.Models
                     },
                     new Game
                     {
-                        Image = "https://image.api.playstation.com/vulcan/ap/rnd/202010/2800/TSjQ4B8ArVmjPiNL2W1R8ndy.jpg",
+                        Image = "",
                         Title = "The Last of Us Part II",
                         Description = "Cinque anni dopo un viaggio pericoloso, Ellie e Joel si sono stabiliti a Jackson." +
                         "Ma un evento violento interrompe la pace, e Ellie parte in cerca di giustizia." +
@@ -47,8 +47,8 @@ namespace PlayVault.Models
                     },
 
                     new Game
-                    { 
-                        Image = "https://cdn1.epicgames.com/offer/fn/EN_02_2560x1440_2560x1440-51d82407c9b5283d01a735b7edc92858.jpg",
+                    {
+                        Image = "",
                         Title = "Fortnite",
                         Description = "Costruisci, combatti, sopravvivi. Entra in una battaglia multiplayer gratuita sempre aggiornata." +
                         "Crea la tua strategia e sopravvivi fino alla fine contro 99 altri giocatori.",
@@ -62,7 +62,7 @@ namespace PlayVault.Models
 
                     new Game
                     {
-                        Image = "https://image.api.playstation.com/vulcan/ap/rnd/202010/0218/YKH0zYruGvYmsbOv9YYMNgqh.jpg",
+                        Image = "",
                         Title = "Ghost of Tsushima",
                         Description = "Nell’anno 1274, l’esercito mongolo invade l’isola di Tsushima. Tu sei Jin Sakai, un samurai sopravvissuto." +
                         "Per proteggere la tua terra, devi infrangere le tradizioni e diventare il Fantasma.",
@@ -76,7 +76,7 @@ namespace PlayVault.Models
 
                     new Game
                     {
-                        Image = "https://cdn1.epicgames.com/offer/62cb0404ec4a48f9a2d40764c4fdf844/EGS_GrandTheftAutoV_RockstarGames_S1_2560x1440-8dd2ce549217bb6fbd8263493d5f29c6",
+                        Image = "",
                         Title = "Grand Theft Auto V",
                         Description = "Vivi la storia di tre criminali in una città inondata dal crimine e dalla corruzione." +
                         "Sperimenta un mondo aperto enorme e dettagliato pieno di missioni, attività e caos.",
@@ -90,7 +90,7 @@ namespace PlayVault.Models
 
                     new Game
                     {
-                        Image = "https://cdn1.epicgames.com/spt-assets/25aa5bfcfb304dd69c40b8bbd182f7e1/elden-ring-1bhlv.png",
+                        Image = "",
                         Title = "Elden Ring",
                         Description = "Affronta un mondo epico e oscuro creato da Hidetaka Miyazaki e George R. R. Martin." +
                         "Scopri segreti, combatti boss temibili e plasma il tuo destino nell’Interregno.",
