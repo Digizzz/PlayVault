@@ -1,5 +1,4 @@
 ﻿@model PlayVault.Models.Utente
-@Html.AntiForgeryToken()
 @{
     ViewData["Title"] = "Delete";
 }
@@ -44,6 +43,7 @@
     </dl>
     
     <form asp-action="Delete">
+        @Html.AntiForgeryToken()
         <input type="hidden" asp-for="Id" />
         <br />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
