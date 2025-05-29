@@ -8,26 +8,22 @@ namespace PlayVault.Models
         public int Id { get; set; }
 
         [Display(Name = "Username")]
-        [RegularExpression(@"^[A-Z][a-zA-Z0-9\s.,]*$", ErrorMessage = "Il nome utente deve iniziare con una lettera maiuscola.")]
-        [StringLength(60, MinimumLength = 3, ErrorMessage = "Il nome utente deve avere tra 3 e 60 caratteri.")]
+        [StringLength(60, MinimumLength = 3)]
         [Required(ErrorMessage = "Il campo Username è obbligatorio.")]
         public string? UserName { get; set; }
 
         [Display(Name = "Gioco Preferito")]
-        [RegularExpression(@"^[A-Z][a-zA-Z0-9\s.,;()]*$", ErrorMessage = "Il campo Game deve iniziare con una lettera maiuscola.")]
-        [Required(ErrorMessage = "Il campo Game è obbligatorio.")]
         [StringLength(60)]
+        [Required(ErrorMessage = "Il campo Game è obbligatorio.")]
         public string? Game { get; set; }
 
         [Display(Name = "Piattaforma")]
-        [RegularExpression(@"^[A-Z][a-zA-Z\s]*$", ErrorMessage = "Il campo Piattaforma deve iniziare con uvna lettera maiuscola.")]
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public string Piattaforma { get; set; }
 
         [Display(Name = "Posizionamento")]
-        [Range(1, 150)]
-        [DataType(DataType.Currency)]
+        [Range(0, 9999)]
         [Column(TypeName = "decimal(18, 2)")]
         [Required]
         public decimal Positioning { get; set; }
