@@ -23,6 +23,11 @@ namespace PlayVault.Controllers
             return View();
         }
 
+        public IActionResult Terms()
+        {
+            return View();
+        }
+
         public IActionResult Ufficio()
         {
             return View();

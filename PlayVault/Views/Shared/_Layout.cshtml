@@ -317,7 +317,7 @@
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div class="stars" id="stars"></div>
 
     <header>
@@ -338,7 +338,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Ufficio">
@@ -351,7 +351,7 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container flex-grow-1">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -361,9 +361,8 @@
         <div class="footer-content">
             <div class="footer-brand">🎮 PlayVault</div>
             <div class="footer-links">
-                <a href="/Privacy" class="footer-link">Privacy Policy</a>
-                <a href="/Terms" class="footer-link">Termini di Servizio</a>
-                <a href="/Contact" class="footer-link">Contatti</a>
+                <a href="/Home/Privacy" class="footer-link">Privacy Policy</a>
+                <a href="/Home/Terms" class="footer-link">Termini di Servizio</a>
             </div>
             <div class="footer-year">© 2025 PlayVault - Tutti i diritti riservati</div>
         </div>

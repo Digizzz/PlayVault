@@ -16,6 +16,7 @@ namespace PlayVault.Models
                 {
                     return;   // DB has been seeded
                 }
+                
                 context.Game.AddRange(
                     new Game
                     {
