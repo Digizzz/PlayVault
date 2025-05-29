@@ -60,7 +60,7 @@
                 animation: bounce 2s infinite;
             }
 
-        @@keyframes bounce {
+         bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
             }
@@ -274,7 +274,7 @@
             animation: twinkle 3s infinite ease-in-out;
         }
 
-        @@keyframes twinkle {
+         twinkle {
             0%, 100% {
                 opacity: 0.3;
                 transform: scale(1);
@@ -287,7 +287,7 @@
         }
 
         /* Responsive design */
-        @@media (max-width: 768px) {
+         (max-width: 768px) {
             .navbar-brand {
                 font-size: 1.5rem;
             }
@@ -339,7 +339,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Utentes" asp-action="Index">
+                                <i class="fas fa-users"></i>Utenti
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Ufficio">
