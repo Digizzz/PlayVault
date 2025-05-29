@@ -1,0 +1,18 @@
+#services:
+#  playvault:
+#    image: ${DOCKER_REGISTRY-}playvault
+#    build:
+#      context: .
+#      dockerfile: PlayVault/Dockerfile
+#    ports:
+#       - "8080:80"
+#
+#  docker_sqlserver:
+#    container_name: playvault_sqlserver
+#    image: mcr.microsoft.com/mssql/server:2022-latest
+#    environment:
+#      - ACCEPT_EULA=Y
+#      - SA_PASSWORD=myPassword1!
+#      - MSSQL_PID=Express
+#    ports:
+#        - "1433:1433"
