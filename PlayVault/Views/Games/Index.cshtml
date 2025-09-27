@@ -12,20 +12,20 @@
         text-align: center;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    
-    .game-library-header h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .game-library-header p {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        margin: 0;
-    }
-    
+
+        .game-library-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .game-library-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
     .create-btn {
         display: inline-flex;
         align-items: center;
@@ -40,26 +40,26 @@
         box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         margin-bottom: 2rem;
     }
-    
-    .create-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 25px rgba(40, 167, 69, 0.4);
-        color: white;
-        text-decoration: none;
-    }
-    
-    .create-btn::before {
-        content: "➕";
-        font-size: 1.2rem;
-    }
-    
+
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(40, 167, 69, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .create-btn::before {
+            content: "➕";
+            font-size: 1.2rem;
+        }
+
     .games-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         gap: 1.5rem;
         margin-top: 2rem;
     }
-    
+
     .game-card {
         background: white;
         border-radius: 15px;
@@ -68,12 +68,12 @@
         transition: all 0.3s ease;
         border: 1px solid rgba(0,0,0,0.05);
     }
-    
-    .game-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    }
-    
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
     .game-image {
         width: 100%;
         height: 200px;
@@ -86,53 +86,46 @@
         position: relative;
         overflow: hidden;
     }
-    
-    .game-image::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-    }
-    
+
+        .game-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+        }
+
     .game-content {
         padding: 1.5rem;
+        background: rgba(0, 0, 0, 0.7);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        color: #fff;
+        border-radius: 0 0 15px 15px;
     }
-    
+
     .game-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
-        line-height: 1.3;
+        color: #fff;
     }
-    
+
     .game-description {
-        color: #6c757d;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 1rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        color: #f1f1f1;
     }
-    
+
     .game-meta {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.75rem;
         margin-bottom: 1rem;
     }
-    
+
     .meta-item {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
     }
-    
+
     .meta-label {
         font-size: 0.75rem;
         color: #8e9aa6;
@@ -140,28 +133,28 @@
         font-weight: 600;
         letter-spacing: 0.5px;
     }
-    
+
     .meta-value {
         font-weight: 600;
         color: #2c3e50;
     }
-    
+
     .game-price {
         color: #28a745;
         font-size: 1.2rem;
         font-weight: 700;
     }
-    
+
     .game-rating {
         display: flex;
         align-items: center;
         gap: 0.25rem;
     }
-    
+
     .rating-stars {
         color: #ffc107;
     }
-    
+
     .game-genre {
         background: linear-gradient(135deg, #667eea, #764ba2);
         color: white;
@@ -171,7 +164,7 @@
         font-weight: 600;
         display: inline-block;
     }
-    
+
     .game-platform {
         background: #6c757d;
         color: white;
@@ -181,7 +174,7 @@
         font-weight: 600;
         display: inline-block;
     }
-    
+
     .game-actions {
         display: flex;
         gap: 0.5rem;
@@ -189,7 +182,7 @@
         padding-top: 1rem;
         border-top: 1px solid #eee;
     }
-    
+
     .action-btn {
         flex: 1;
         padding: 0.5rem 0.75rem;
@@ -200,64 +193,67 @@
         font-size: 0.85rem;
         transition: all 0.3s ease;
     }
-    
+
     .btn-edit {
         background: #007bff;
         color: white;
     }
-    
-    .btn-edit:hover {
-        background: #0056b3;
-        color: white;
-        text-decoration: none;
-    }
-    
+
+        .btn-edit:hover {
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+        }
+
     .btn-details {
         background: #6c757d;
         color: white;
     }
-    
-    .btn-details:hover {
-        background: #545b62;
-        color: white;
-        text-decoration: none;
-    }
-    
+
+        .btn-details:hover {
+            background: #545b62;
+            color: white;
+            text-decoration: none;
+        }
+
     .btn-delete {
         background: #dc3545;
         color: white;
     }
-    
-    .btn-delete:hover {
-        background: #c82333;
-        color: white;
-        text-decoration: none;
-    }
-    
+
+        .btn-delete:hover {
+            background: #c82333;
+            color: white;
+            text-decoration: none;
+        }
+
     .no-games {
         text-align: center;
         padding: 3rem;
         color: #6c757d;
     }
-    
+
     .no-games-icon {
         font-size: 4rem;
         margin-bottom: 1rem;
         opacity: 0.5;
     }
-    
+
     (max-width: 768px) {
-        .games-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .game-library-header h1 {
-            font-size: 2rem;
-        }
-        
-        .game-meta {
-            grid-template-columns: 1fr;
-        }
+        .games-grid
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .game-library-header h1 {
+        font-size: 2rem;
+    }
+
+    .game-meta {
+        grid-template-columns: 1fr;
+    }
+
     }
 </style>
 
@@ -268,7 +264,7 @@
 
 <div class="container-fluid">
     <a asp-action="Create" class="create-btn">Add New Game</a>
-    
+
     @if (Model != null && Model.Count() > 0)
     {
         <div class="games-grid">
@@ -285,26 +281,26 @@
                             <span>🎮</span>
                         }
                     </div>
-                    
+
                     <div class="game-content">
                         <h3 class="game-title">@Html.DisplayFor(modelItem => item.Title)</h3>
-                        
+
                         @if (!string.IsNullOrEmpty(item.Description))
                         {
                             <p class="game-description">@Html.DisplayFor(modelItem => item.Description)</p>
                         }
-                        
+
                         <div class="game-meta">
                             <div class="meta-item">
                                 <span class="meta-label">Release Date</span>
                                 <span class="meta-value">@Html.DisplayFor(modelItem => item.ReleaseDate)</span>
                             </div>
-                            
+
                             <div class="meta-item">
                                 <span class="meta-label">Price</span>
                                 <span class="meta-value game-price">@Html.DisplayFor(modelItem => item.Price)</span>
                             </div>
-                            
+
                             @if (!string.IsNullOrEmpty(item.Genre))
                             {
                                 <div class="meta-item">
@@ -312,7 +308,7 @@
                                     <span class="game-genre">@Html.DisplayFor(modelItem => item.Genre)</span>
                                 </div>
                             }
-                            
+
                             @if (!string.IsNullOrEmpty(item.Piattaforma))
                             {
                                 <div class="meta-item">
@@ -320,7 +316,7 @@
                                     <span class="game-platform">@Html.DisplayFor(modelItem => item.Piattaforma)</span>
                                 </div>
                             }
-                            
+
                             @if (item.Rating != null)
                             {
                                 <div class="meta-item">
@@ -346,7 +342,7 @@
                                     </div>
                                 </div>
                             }
-                            
+
                             @if (!string.IsNullOrEmpty(item.recensioneTxt))
                             {
                                 <div class="meta-item" style="grid-column: 1 / -1;">
@@ -355,7 +351,7 @@
                                 </div>
                             }
                         </div>
-                        
+
                         <div class="game-actions">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="action-btn btn-edit">✏️ Edit</a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="action-btn btn-details">👁️ Details</a>
