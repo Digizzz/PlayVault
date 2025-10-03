@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Upload file";
+}
+
+<h2>Upload file</h2>
+
+<form asp-controller="Upload" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="files">Seleziona file (multiple):</label>
+        <input type="file" id="files" name="files" multiple accept=".jpeg,.gif,.pdf" class="form-control" />
+        <small class="form-text text-muted">Estensioni consentite: .jpeg, .gif, .pdf — dimensione massima per file: 3 MB</small>
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit">Carica</button>
+</form>
+
+@if (ViewBag.UploadedCount != null)
+{
+    <div class="alert alert-success mt-3">
+        <strong>Risultato upload:</strong><br />
+        Files caricati: @ViewBag.UploadedCount <br />
+        Dimensione totale: @String.Format("{0:N0}", (long)ViewBag.TotalBytes) bytes (~@String.Format("{0:N2}", ((long)ViewBag.TotalBytes)/(1024.0*1024.0)) MB) <br />
+        Totale sessione (files caricati in questa sessione): @ViewBag.SessionTotal
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning">@ViewBag.Message</div>
+}

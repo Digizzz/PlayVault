@@ -10,11 +10,10 @@ namespace PlayVault.Data
     public class PlayVaultContext : DbContext
     {
         public PlayVaultContext (DbContextOptions<PlayVaultContext> options)
-            : base(options)
-        {
-        }
+            : base(options){}
 
         public DbSet<PlayVault.Models.Game> Game { get; set; } = default!;
         public DbSet<PlayVault.Models.Utente> Utente { get; set; } = default!;
+        public DbSet<PlayVault.Models.Image> Images { get; set; }
     }
 }

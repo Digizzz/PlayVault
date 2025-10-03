@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace PlayVault.Models
 {
@@ -7,10 +9,15 @@ namespace PlayVault.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "URL Immagine")]
+        // percorso relativo salvato in DB (/uploads/xxx.jpg)
+        [Display(Name = "Immagine")]
         [StringLength(300)]
-        [Url(ErrorMessage = "Inserisci un URL valido.")]
-        public string Image { get; set; }
+        public string? Image { get; set; }
+
+        // not mapped: usado per binding file nel form
+        [Display(Name = "Carica immagine")]
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
 
         [Display(Name = "Titolo")]
         [StringLength(100, MinimumLength = 2)]
@@ -20,7 +27,7 @@ namespace PlayVault.Models
         [Display(Name = "Descrizione")]
         [StringLength(1000, MinimumLength = 5)]
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Display(Name = "Data di Rilascio")]
         [DataType(DataType.Date)]
@@ -46,12 +53,11 @@ namespace PlayVault.Models
         [Display(Name = "Recensione")]
         [StringLength(1000, MinimumLength = 5)]
         [Required]
-        public string recensioneTxt { get; set; }
+        public string recensioneTxt { get; set; } = string.Empty;
 
         [Display(Name = "Piattaforma")]
         [StringLength(100, MinimumLength = 3)]
         [Required]
-        public string Piattaforma { get; set; }
+        public string Piattaforma { get; set; } = string.Empty;
     }
-
 }

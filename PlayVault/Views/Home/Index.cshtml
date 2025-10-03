@@ -259,6 +259,10 @@
             background: linear-gradient(45deg, #6bcf7f, #2d8a47);
         }
 
+        .btn-donations {
+            background: linear-gradient(45deg, #ff6b6b, #ff3c3c);
+        }
+
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -427,6 +431,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card donations-card" onclick="navigateToDonations()">
+                <div class="card-image">
+                    <div class="card-icon">💖</div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Donazioni</h2>
+                    <p class="card-description">Sostieni Play Vault con una donazione e aiutaci a mantenere il progetto attivo e in continua evoluzione.</p>
+                    <button class="btn btn-donations">Dona Ora</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -486,6 +501,10 @@
 
         function navigateToOffice() {
             window.location.href = '/Home/Ufficio';
+        }
+
+        function navigateToDonations() {
+            window.location.href = '/Donazioni/Index';
         }
 
         // Initialize animations

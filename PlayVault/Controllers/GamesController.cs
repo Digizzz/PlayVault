@@ -50,20 +50,44 @@ namespace PlayVault.Controllers
         }
 
         // POST: Games/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Image,Title,Description,ReleaseDate,Price,Genre,Rating,recensioneTxt,Piattaforma")] Game game)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,ReleaseDate,Price,Genre,Rating,recensioneTxt,Piattaforma")] Game game, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(game);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    if (imageFile != null && imageFile.Length > 0)
+                    {
+                        var fileName = Path.GetFileName(imageFile.FileName);
+                        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                        if (!Directory.Exists(uploadPath))
+                            Directory.CreateDirectory(uploadPath);
+
+                        var filePath = Path.Combine(uploadPath, fileName);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                        }
+
+                        // Salviamo il percorso relativo da usare nell'HTML
+                        game.Image = "wwwroot/uploads/" + fileName;
+                    }
+
+                    _context.Add(game);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("UPLOAD ERROR: " + ex.Message);
+                    throw;
+                }
             }
             return View(game);
         }
+
 
         // GET: Games/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -82,27 +106,49 @@ namespace PlayVault.Controllers
         }
 
         // POST: Games/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Image,Title,Description,ReleaseDate,Price,Genre,Rating,recensioneTxt,Piattaforma")] Game game)
+        public async Task<IActionResult> Edit(int id, Game game)
         {
             if (id != game.Id)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(game);
-                    await _context.SaveChangesAsync();
+                    if (game.ImageFile != null && game.ImageFile.Length > 0)
+                    {
+                        var ext = Path.GetExtension(game.ImageFile.FileName).ToLowerInvariant();
+                        var allowedExt = new[] { ".jpeg", ".jpg", ".gif", ".png", ".pdf" };
+                        if (!allowedExt.Contains(ext))
+                        {
+                            ModelState.AddModelError("ImageFile", "Estensione non consentita.");
+                            return View(game);
+                        }
+
+                        if (game.ImageFile.Length > 3 * 1024 * 1024)
+                        {
+                            ModelState.AddModelError("ImageFile", "Il file supera i 3 MB.");
+                            return View(game);
+                        }
+
+                        var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                        Directory.CreateDirectory(uploads);
+
+                        var fileName = $"{Guid.NewGuid():N}{ext}";
+                        var path = Path.Combine(uploads, fileName);
+
+                        using var fs = new FileStream(path, FileMode.Create);
+                        await game.ImageFile.CopyToAsync(fs);
+
+                        game.Image = "/uploads/" + fileName;
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!GameExists(game.Id))
+                    if (!_context.Game.Any(e => e.Id == game.Id))
                     {
                         return NotFound();
                     }
@@ -111,8 +157,18 @@ namespace PlayVault.Controllers
                         throw;
                     }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("ERRORE UPLOAD (Edit): " + ex.Message);
+                    ModelState.AddModelError("", "Errore durante l'upload: " + ex.Message);
+                }
+                _context.Update(game);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
+
+
             return View(game);
         }
 
