@@ -11,7 +11,7 @@ namespace PlayVault.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<PlayVaultContext>>()))
             {
-                // Look for any movies.
+                // Look for any games.
                 if (context.Game.Any())
                 {
                     return;   // DB has been seeded
@@ -20,7 +20,7 @@ namespace PlayVault.Models
                 context.Game.AddRange(
                     new Game
                     {
-                        Image = "https://image.api.playstation.com/vulcan/ap/rnd/202009/2502/rB3GRFvdPmaALiGt89ysflQ4.jpg",
+                        Image = "/uploads/placeholder.jpg",
                         Title = "Fallout 4",
                         Description = "Come unico sopravvissuto del Vault 111 devi affrontare un mondo distrutto dalla guerra nucleare." +
                         "Ogni istante è una lotta per la sopravvivenza e ogni scelta spetta a te." +
@@ -34,7 +34,7 @@ namespace PlayVault.Models
                     },
                     new Game
                     {
-                        Image = "",
+                        Image = "/uploads/placeholder.jpg",
                         Title = "The Last of Us Part II",
                         Description = "Cinque anni dopo un viaggio pericoloso, Ellie e Joel si sono stabiliti a Jackson." +
                         "Ma un evento violento interrompe la pace, e Ellie parte in cerca di giustizia." +
@@ -49,7 +49,7 @@ namespace PlayVault.Models
 
                     new Game
                     {
-                        Image = "",
+                        Image = "/uploads/placeholder.jpg",
                         Title = "Fortnite",
                         Description = "Costruisci, combatti, sopravvivi. Entra in una battaglia multiplayer gratuita sempre aggiornata." +
                         "Crea la tua strategia e sopravvivi fino alla fine contro 99 altri giocatori.",
@@ -63,7 +63,7 @@ namespace PlayVault.Models
 
                     new Game
                     {
-                        Image = "",
+                        Image = "/uploads/placeholder.jpg",
                         Title = "Ghost of Tsushima",
                         Description = "Nell’anno 1274, l’esercito mongolo invade l’isola di Tsushima. Tu sei Jin Sakai, un samurai sopravvissuto." +
                         "Per proteggere la tua terra, devi infrangere le tradizioni e diventare il Fantasma.",
@@ -77,7 +77,7 @@ namespace PlayVault.Models
 
                     new Game
                     {
-                        Image = "",
+                        Image = "/uploads/placeholder.jpg",
                         Title = "Grand Theft Auto V",
                         Description = "Vivi la storia di tre criminali in una città inondata dal crimine e dalla corruzione." +
                         "Sperimenta un mondo aperto enorme e dettagliato pieno di missioni, attività e caos.",
@@ -91,7 +91,7 @@ namespace PlayVault.Models
 
                     new Game
                     {
-                        Image = "",
+                        Image = "/uploads/placeholder.jpg",
                         Title = "Elden Ring",
                         Description = "Affronta un mondo epico e oscuro creato da Hidetaka Miyazaki e George R. R. Martin." +
                         "Scopri segreti, combatti boss temibili e plasma il tuo destino nell’Interregno.",
