@@ -3,7 +3,7 @@ using PlayVault.Data;
 
 namespace PlayVault.Models
 {
-    public class SeedDataGames
+    public static class SeedDataGames
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -11,81 +11,75 @@ namespace PlayVault.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<PlayVaultContext>>()))
             {
-                // Look for any games.
+                // Se il database contiene già giochi, esci
                 if (context.Game.Any())
                 {
-                    return;   // DB has been seeded
+                    return; // DB già inizializzato
                 }
-                
+
                 context.Game.AddRange(
                     new Game
                     {
                         Image = "/uploads/placeholder.jpg",
                         Title = "Fallout 4",
-                        Description = "Come unico sopravvissuto del Vault 111 devi affrontare un mondo distrutto dalla guerra nucleare." +
-                        "Ogni istante è una lotta per la sopravvivenza e ogni scelta spetta a te." +
-                        "Solo tu puoi ricostruire e definire il destino della Zona Contaminata. Benvenuto a casa.",
-                        ReleaseDate = DateTime.Parse("10-11-2015"),
+                        Description = "Come unico sopravvissuto del Vault 111, devi affrontare un mondo distrutto dalla guerra nucleare. Ogni istante è una lotta per la sopravvivenza e ogni scelta spetta a te.",
+                        ReleaseDate = new DateTime(2015, 11, 10),
                         Price = 10,
                         Genre = "GDR",
-                        Rating = 100,
-                        recensioneTxt = "Provaaaa",
-                        Piattaforma = "PC, PS, XBOX"
+                        Rating = 5,
+                        recensioneTxt = "Un vasto mondo post-apocalittico con una storia profonda e tante possibilità di esplorazione.",
+                        Piattaforma = "PC, PS4, XBOX One"
                     },
+
                     new Game
                     {
                         Image = "/uploads/placeholder.jpg",
                         Title = "The Last of Us Part II",
-                        Description = "Cinque anni dopo un viaggio pericoloso, Ellie e Joel si sono stabiliti a Jackson." +
-                        "Ma un evento violento interrompe la pace, e Ellie parte in cerca di giustizia." +
-                        "Affronta nemici letali ed esplora un mondo devastato dalla pandemia.",
-                        ReleaseDate = DateTime.Parse("19-06-2020"),
-                        Price = 20,
-                        Genre = "Azione/Avventura",
-                        Rating = 98,
-                        recensioneTxt = "Storia intensa e coinvolgente.",
-                        Piattaforma = "PS"
+                        Description = "Cinque anni dopo il loro viaggio pericoloso attraverso gli Stati Uniti, Ellie e Joel si sono stabiliti a Jackson. Un evento violento infrange la pace e spinge Ellie in una spietata ricerca di giustizia.",
+                        ReleaseDate = new DateTime(2020, 6, 19),
+                        Price = 25,
+                        Genre = "Azione / Avventura",
+                        Rating = 5,
+                        recensioneTxt = "Una narrazione intensa e cinematografica, tra le migliori esperienze single-player.",
+                        Piattaforma = "PS4, PS5"
                     },
 
                     new Game
                     {
                         Image = "/uploads/placeholder.jpg",
                         Title = "Fortnite",
-                        Description = "Costruisci, combatti, sopravvivi. Entra in una battaglia multiplayer gratuita sempre aggiornata." +
-                        "Crea la tua strategia e sopravvivi fino alla fine contro 99 altri giocatori.",
-                        ReleaseDate = DateTime.Parse("25-07-2017"),
+                        Description = "Costruisci, combatti e sopravvivi in questo frenetico battle royale sempre in evoluzione. 100 giocatori si affrontano finché ne resta solo uno.",
+                        ReleaseDate = new DateTime(2017, 7, 25),
                         Price = 0,
                         Genre = "Battle Royale",
-                        Rating = 85,
-                        recensioneTxt = "Divertente e sempre in evoluzione.",
-                        Piattaforma = "PC, PS, XBOX, Switch"
+                        Rating = 5,
+                        recensioneTxt = "Divertente e costantemente aggiornato, perfetto per partite veloci con gli amici.",
+                        Piattaforma = "PC, PS, XBOX, Switch, Mobile"
                     },
 
                     new Game
                     {
                         Image = "/uploads/placeholder.jpg",
                         Title = "Ghost of Tsushima",
-                        Description = "Nell’anno 1274, l’esercito mongolo invade l’isola di Tsushima. Tu sei Jin Sakai, un samurai sopravvissuto." +
-                        "Per proteggere la tua terra, devi infrangere le tradizioni e diventare il Fantasma.",
-                        ReleaseDate = DateTime.Parse("17-07-2020"),
-                        Price = 30,
-                        Genre = "Azione/Avventura",
-                        Rating = 95,
-                        recensioneTxt = "Spettacolare e coinvolgente.",
-                        Piattaforma = "PS"
+                        Description = "Nel 1274, l’esercito mongolo invade l’isola di Tsushima. Jin Sakai, un samurai sopravvissuto, deve abbandonare le tradizioni per salvare la sua terra e diventare il Fantasma.",
+                        ReleaseDate = new DateTime(2020, 7, 17),
+                        Price = 35,
+                        Genre = "Azione / Avventura",
+                        Rating = 5,
+                        recensioneTxt = "Un’esperienza visiva e narrativa eccezionale ambientata nel Giappone feudale.",
+                        Piattaforma = "PS4, PS5"
                     },
 
                     new Game
                     {
                         Image = "/uploads/placeholder.jpg",
                         Title = "Grand Theft Auto V",
-                        Description = "Vivi la storia di tre criminali in una città inondata dal crimine e dalla corruzione." +
-                        "Sperimenta un mondo aperto enorme e dettagliato pieno di missioni, attività e caos.",
-                        ReleaseDate = DateTime.Parse("17-09-2013"),
+                        Description = "Vivi la storia di tre criminali in una città brulicante di vita, corruzione e caos. Un open world enorme con missioni, attività e follia senza fine.",
+                        ReleaseDate = new DateTime(2013, 9, 17),
                         Price = 15,
-                        Genre = "Azione",
-                        Rating = 97,
-                        recensioneTxt = "Classico moderno ricco di contenuti.",
+                        Genre = "Azione / Open World",
+                        Rating = 5,
+                        recensioneTxt = "Un capolavoro che continua a dominare le classifiche anche anni dopo l’uscita.",
                         Piattaforma = "PC, PS, XBOX"
                     },
 
@@ -93,18 +87,16 @@ namespace PlayVault.Models
                     {
                         Image = "/uploads/placeholder.jpg",
                         Title = "Elden Ring",
-                        Description = "Affronta un mondo epico e oscuro creato da Hidetaka Miyazaki e George R. R. Martin." +
-                        "Scopri segreti, combatti boss temibili e plasma il tuo destino nell’Interregno.",
-                        ReleaseDate = DateTime.Parse("25-02-2022"),
+                        Description = "Un vasto mondo fantasy creato da Hidetaka Miyazaki e George R. R. Martin. Esplora, combatti boss temibili e scopri i segreti dell’Interregno.",
+                        ReleaseDate = new DateTime(2022, 2, 25),
                         Price = 40,
-                        Genre = "GDR/Azione",
-                        Rating = 96,
-                        recensioneTxt = "Profondo, difficile e gratificante.",
+                        Genre = "GDR / Azione",
+                        Rating = 5,
+                        recensioneTxt = "Difficile ma appagante: un capolavoro di design, libertà e atmosfera.",
                         Piattaforma = "PC, PS, XBOX"
                     }
-
-
                 );
+
                 context.SaveChanges();
             }
         }

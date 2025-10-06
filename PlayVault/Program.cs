@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlayVault.Data;
 using PlayVault.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<PlayVaultContext>(options =>
@@ -13,13 +14,27 @@ builder.Services.AddAntiforgery();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Configurazione caricamento file
 builder.Services.Configure<FormOptions>(o => {
     o.MultipartBodyLengthLimit = 3145728; // 3 MB
 });
 
+// Logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.AddDebug();
+
+// ✅ Aggiunta: Cache distribuita in memoria per le sessioni
+builder.Services.AddDistributedMemoryCache();
+
+// ✅ Aggiunta: Configurazione della sessione
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".PlayVault.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -28,7 +43,6 @@ app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-
     SeedDataGames.Initialize(services);
 }
 
@@ -46,6 +60,9 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.UseRouting();
+
+// ✅ Aggiunta: Abilita la sessione PRIMA dell'autorizzazione
+app.UseSession();
 
 app.UseAuthorization();
 

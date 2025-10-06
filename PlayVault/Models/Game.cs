@@ -46,7 +46,7 @@ namespace PlayVault.Models
         public string? Genre { get; set; }
 
         [Display(Name = "Valutazione")]
-        [Range(0, 110)]
+        [Range(0, 5)]
         [Required]
         public int Rating { get; set; }
 

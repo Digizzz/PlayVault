@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PlayVault.Data;
@@ -56,6 +57,12 @@ namespace PlayVault.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,UserName,Game,Piattaforma,Positioning,Date")] Utente utente)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(SessionKeys.SessionKeyName)))
+            {
+                HttpContext.Session.SetString(SessionKeys.SessionKeyName, "The Doctor");
+                HttpContext.Session.SetInt32(SessionKeys.SessionKeyAge, 73);
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(utente);
@@ -88,6 +95,12 @@ namespace PlayVault.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Game,Piattaforma,Positioning,Date")] Utente utente)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(SessionKeys.SessionKeyName)))
+            {
+                HttpContext.Session.SetString(SessionKeys.SessionKeyName, "The Doctor");
+                HttpContext.Session.SetInt32(SessionKeys.SessionKeyAge, 73);
+            }
+
             if (id != utente.Id)
             {
                 return NotFound();
@@ -139,6 +152,12 @@ namespace PlayVault.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(SessionKeys.SessionKeyName)))
+            {
+                HttpContext.Session.SetString(SessionKeys.SessionKeyName, "The Doctor");
+                HttpContext.Session.SetInt32(SessionKeys.SessionKeyAge, 73);
+            }
+
             var utente = await _context.Utente.FindAsync(id);
             if (utente != null)
             {

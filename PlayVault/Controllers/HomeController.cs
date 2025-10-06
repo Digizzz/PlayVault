@@ -15,6 +15,14 @@ namespace PlayVault.Controllers
 
         public IActionResult Index()
         {
+            var name = HttpContext.Session.GetString(SessionKeys.SessionKeyName);
+            var age = HttpContext.Session.GetInt32(SessionKeys.SessionKeyAge);
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                ViewData["UserName"] = name;
+                ViewData["UserAge"] = age;
+            }
             return View();
         }
 
