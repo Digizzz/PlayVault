@@ -36,6 +36,21 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+/*
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        policy =>
+        {
+            policy.WithOrigins(
+                "dominio"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
+*/
+
 var app = builder.Build();
 
 app.UseCors(c => c.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
